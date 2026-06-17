@@ -1,0 +1,10 @@
+langchain
+langchain_openai
+langchain_chroma
+langchain_text_splitters
+langchain_google_genai
+pymupdf4llm
+streamlit
+opentelemetry-exporter-gcp-logging
+opentelemetry-exporter-otlp-proto-http
+google-adk
