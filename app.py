@@ -2,8 +2,8 @@ import streamlit as st
 from rag_agent import agent
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 
-st.set_page_config(page_title="AgenticRAG", page_icon="🤖")
-st.title("🤖 AgenticRAG")
+st.set_page_config(page_title="KRYOS AI", page_icon="🤖")
+st.title("🤖 KRYOS AI")
 st.caption("Built by Ganesh Sankar")
 
 if "messages" not in st.session_state:
