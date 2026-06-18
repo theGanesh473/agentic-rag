@@ -13,10 +13,6 @@ for msg in st.session_state.messages:
     if msg["role"] == "tool":
         continue
     with st.chat_message(msg["role"]):
-        idx = st.session_state.messages.index(msg)
-        if msg["role"] == "assistant" and idx > 0 and st.session_state.messages[idx - 1]["role"] == "tool":
-            with st.expander("📎 Retrieved context"):
-                st.caption(st.session_state.messages[idx - 1]["content"])
         st.write(msg["content"])
 
 if user_input := st.chat_input("Ask me anything…"):
