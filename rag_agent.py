@@ -4,17 +4,16 @@ import pymupdf4llm
 from langchain.tools import tool
 from langchain_chroma import Chroma
 from langchain.agents import create_agent
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_text_splitters import MarkdownTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 os.environ["LANGSMITH_TRACING"] = st.secrets["LANGSMITH_TRACING"]
 os.environ["LANGSMITH_API_KEY"] = st.secrets["LANGSMITH_API_KEY"]
 
-llm = ChatOpenAI(
-    model="gpt-oss-120b",
-    base_url="https://api.cerebras.ai/v1",
-    api_key=st.secrets["CEREBRAS_API_KEY"]
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash",
+    google_api_key=st.secrets["GEMINI_API_KEY"]
 )
 
 embeddings = GoogleGenerativeAIEmbeddings(
