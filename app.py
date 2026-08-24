@@ -39,8 +39,14 @@ if user_input := st.chat_input("Ask me anything…"):
                 last = event["messages"][-1]
                 if isinstance(last, ToolMessage):
                     tool_output = last.content if isinstance(last.content, str) else str(last.content)
-                elif isinstance(last, AIMessage) and last.content:
-                    final_answer = last.content
+               elif isinstance(last, AIMessage) and last.content:
+                    if isinstance(last.content, list):
+                    final_answer = " ".join(
+                      block["text"] for block in last.content 
+                      if isinstance(block, dict) and block.get("type") == "text"
+        )
+    else:
+        final_answer = last.content
 
 
         st.write(final_answer)
