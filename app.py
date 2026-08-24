@@ -30,7 +30,7 @@ if user_input := st.chat_input("Ask me anything…"):
                     history.append(AIMessage(content=m["content"]))
 
             final_answer = ""
-            tool_output  = ""
+            tool_output = ""
 
             for event in agent.stream(
                 {"messages": history + [HumanMessage(content=user_input)]},
@@ -39,17 +39,16 @@ if user_input := st.chat_input("Ask me anything…"):
                 last = event["messages"][-1]
                 if isinstance(last, ToolMessage):
                     tool_output = last.content if isinstance(last.content, str) else str(last.content)
-               elif isinstance(last, AIMessage) and last.content:
+                elif isinstance(last, AIMessage) and last.content:
                     if isinstance(last.content, list):
-                    final_answer = " ".join(
-                      block["text"] for block in last.content 
-                      if isinstance(block, dict) and block.get("type") == "text"
-        )
-    else:
-        final_answer = last.content
-
+                        final_answer = " ".join(
+                            block["text"] for block in last.content
+                            if isinstance(block, dict) and block.get("type") == "text"
+                        )
+                    else:
+                        final_answer = last.content
 
         st.write(final_answer)
 
-    st.session_state.messages.append({"role": "tool",      "content": tool_output})
+    st.session_state.messages.append({"role": "tool", "content": tool_output})
     st.session_state.messages.append({"role": "assistant", "content": final_answer})
