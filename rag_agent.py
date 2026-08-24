@@ -12,7 +12,7 @@ os.environ["LANGSMITH_TRACING"] = st.secrets["LANGSMITH_TRACING"]
 os.environ["LANGSMITH_API_KEY"] = st.secrets["LANGSMITH_API_KEY"]
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
+    model="gemini-3.6-flash",
     google_api_key=st.secrets["GEMINI_API_KEY"]
 )
 
